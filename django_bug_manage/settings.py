@@ -114,6 +114,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# 腾讯短信
+TENCENT_SMS_APP_ID = 666666
+TENCENT_SMS_APP_KEY = "666666"
+
+# 短信签名
+TENCENT_SMS_SIGN = "666666"
+
+# 短信模板
+TENCENT_SMS_TEMPLATE = {
+    'register': 577066,
+    'login': 577065,
+    'reset': 577064,
+}
+
 try:
     from .local_settings import *
 except ImportError:
