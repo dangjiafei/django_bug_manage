@@ -41,7 +41,7 @@ def project_list(request):
                 project_dict['join'].append(item.project)
 
         form = ProjectModelForm(request)
-        return render(request, 'project_list.html', {'form': form, 'project_dict': project_dict})
+        return render(request, 'web/project_list.html', {'form': form, 'project_dict': project_dict})
 
     # POST，对话框的ajax添加项目。
     form = ProjectModelForm(request, data=request.POST)

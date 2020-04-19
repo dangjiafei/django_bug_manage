@@ -112,7 +112,10 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# 影响自动生成数据库时间字段；
+#       USE_TZ = True，创建UTC时间写入到数据库。
+#       USE_TZ = False，根据TIME_ZONE设置的时区进行创建时间并写入数据库
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -143,16 +146,50 @@ TENCENT_COS_KEY = "COS的secret_key"
 
 # ------- 登录白名单: 无需登录就可以访问的页面 -------
 WHITE_REGEX_URL_LIST = [
-    "/register/",
-    "/send/sms/",
-    "/login/",
-    "/login/sms/",
-    "/image/code/",
-    "/index/",
-    "/price/",
+    "/web/register/",
+    "/web/send/sms/",
+    "/web/login/",
+    "/web/login/sms/",
+    "/web/image/code/",
+    "/web/index/",
+    "/web/price/",
 ]
 
 try:
     from .local_settings import *
 except ImportError:
     pass
+
+
+# # 腾讯短信
+# TENCENT_SMS_APP_ID = 1400351175
+# TENCENT_SMS_APP_KEY = "b7c4c12598a3ae95dc7bfcd08adfd1e4"
+#
+# # 短信签名
+# TENCENT_SMS_SIGN = "Bug管理系统"
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',  # 连接数据库的类型
+#         'NAME': 'django_bug_manage',  # 数据库名
+#         'HOST': '127.0.0.1',  # 数据库主机
+#         'PORT': 3306,  # 数据库的端口
+#         'USER': 'root',
+#         'PASSWORD': 'root',
+#     }
+# }
+#
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379",  # 安装redis的主机的 IP 和 端口
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#             "CONNECTION_POOL_KWARGS": {
+#                 "max_connections": 1000,
+#                 "encoding": 'utf-8'
+#             },
+#             "PASSWORD": "djf19950815@."  # redis密码
+#         }
+#     }
+# }
