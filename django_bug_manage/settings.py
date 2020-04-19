@@ -47,6 +47,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'web.middleware.auth.AuthMiddleware',
 ]
 
 ROOT_URLCONF = 'django_bug_manage.urls'
@@ -101,9 +102,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'  # 中文
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -115,6 +118,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# 这个Django项目中用到的静态文件都保存在哪些目录
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "web/static"),
+]
 
 # 腾讯短信
 TENCENT_SMS_APP_ID = 666666
@@ -129,6 +137,20 @@ TENCENT_SMS_TEMPLATE = {
     'login': 577065,
     'reset': 577064,
 }
+
+TENCENT_COS_ID = "COS的secret_id"
+TENCENT_COS_KEY = "COS的secret_key"
+
+# ------- 登录白名单: 无需登录就可以访问的页面 -------
+WHITE_REGEX_URL_LIST = [
+    "/register/",
+    "/send/sms/",
+    "/login/",
+    "/login/sms/",
+    "/image/code/",
+    "/index/",
+    "/price/",
+]
 
 try:
     from .local_settings import *

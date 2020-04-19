@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'plugin/bootstrap/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'plugin/font-awesome/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/manage.css' %}">
+    <link rel="stylesheet" href="{% static 'web/plugin/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'web/plugin/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'web/css/manage.css' %}">
     <style>
         .navbar-av {
             border-radius: 0;
@@ -69,8 +69,8 @@
 {% block content %}{% endblock %}
 
 
-<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-<script src="{% static 'plugin/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'web/js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'web/plugin/bootstrap/js/bootstrap.min.js' %}"></script>
 {% block js %}{% endblock %}
 </body>
 </html>
