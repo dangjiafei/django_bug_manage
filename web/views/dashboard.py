@@ -33,7 +33,7 @@ def dashboard(request, project_id):
         'user_list': user_list,
         'top_ten_object': top_ten
     }
-    return render(request, 'dashboard.html', context)
+    return render(request, 'web/dashboard.html', context)
 
 
 def issues_chart(request, project_id):

@@ -20,7 +20,7 @@
         {% else %}
             <div class="alert alert-success no-radius">
                 <h4><i class="fa fa-check-circle" aria-hidden="true"></i> 加入成功 </h4>
-                <a href="{% url 'dashboard' project_id=project.id %}">点击跳转至项目</a>
+                <a href="{% url 'web:null:dashboard' project_id=project.id %}">点击跳转至项目</a>
             </div>
         {% endif %}
 

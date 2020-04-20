@@ -27,15 +27,15 @@ def payment(request, policy_id):
     # 1. 价格策略(套餐)policy_id
     policy_object = models.PricePolicy.objects.filter(id=policy_id, category=2).first()
     if not policy_object:
-        return redirect('price')
+        return redirect('web:price')
 
     # 2. 要购买的数量
     number = request.GET.get('number', '')
     if not number or not number.isdecimal():
-        return redirect('price')
+        return redirect('web:price')
     number = int(number)
     if number < 1:
-        return redirect('price')
+        return redirect('web:price')
 
     # 3. 计算原价
     origin_price = number * policy_object.price
@@ -56,7 +56,7 @@ def payment(request, policy_id):
             balance = _object.price_policy * price * _object.count / total_timedelta.days * balance_timedelta.days
 
     if balance >= origin_price:
-        return redirect('price')
+        return redirect('web:price')
 
     context = {
         'policy_id': policy_object.id,
@@ -83,7 +83,7 @@ def pay(request):
     key = 'payment_{}'.format(request.tracer.user.mobile_phone)
     context_string = conn.get(key)
     if not context_string:
-        return redirect('price')
+        return redirect('web:price')
     context = json.loads(context_string.decode('utf-8'))
 
     # 1. 数据库中生成交易记录（待支付）
@@ -157,7 +157,7 @@ def pay(request):
     key = 'payment_{}'.format(request.tracer.user.mobile_phone)
     context_string = conn.get(key)
     if not context_string:
-        return redirect('price')
+        return redirect('web:price')
     context = json.loads(context_string.decode('utf-8'))
 
     # 1. 数据库中生成交易记录（待支付）

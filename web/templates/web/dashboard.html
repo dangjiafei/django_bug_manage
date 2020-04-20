@@ -87,7 +87,7 @@
                             <div class="panel-body">
                                 {% for key,item in status_dict.items %}
                                     <div class="col-sm-4 status-count">
-                                        <a href="{% url 'issues' project_id=request.tracer.project.id %}?status={{ key }}">
+                                        <a href="{% url 'web:null:issues' project_id=request.tracer.project.id %}?status={{ key }}">
                                             <div class="count">{{ item.count }}</div>
                                             <div>{{ item.text }}</div>
                                         </a>
@@ -173,7 +173,7 @@
                                     <td>
                                         <div>{{ item.creator.username }}</div>
                                         <div>指派
-                                            <a href="{% url 'issues_detail' project_id=request.tracer.project.id issues_id=item.id %}">{% string_just item.id %}</a>
+                                            <a href="{% url 'web:null:issues_detail' project_id=request.tracer.project.id issues_id=item.id %}">{% string_just item.id %}</a>
                                             给 {{ item.assign.username }}
                                         </div>
                                     </td>
@@ -197,7 +197,7 @@
 {% block js %}
     <script src="{% static 'web/plugin/highcharts/highcharts.js' %}"></script>
     <script>
-        var INIT_CHART = "{% url 'issues_chart' project_id=request.tracer.project.id %}";
+        var INIT_CHART = "{% url 'web:null:issues_chart' project_id=request.tracer.project.id %}";
         Highcharts.setOptions({
             global: {
                 useUTC: false

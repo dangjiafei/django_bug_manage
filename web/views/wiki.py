@@ -16,18 +16,18 @@ def wiki(request, project_id):
     """ wiki的首页 """
     wiki_id = request.GET.get('wiki_id')
     if not wiki_id or not wiki_id.isdecimal():
-        return render(request, 'wiki.html')
+        return render(request, 'web/wiki.html')
 
     wiki_object = models.Wiki.objects.filter(id=wiki_id, project_id=project_id).first()
 
-    return render(request, 'wiki.html', {'wiki_object': wiki_object})
+    return render(request, 'web/wiki.html', {'wiki_object': wiki_object})
 
 
 def wiki_add(request, project_id):
     """ wiki添加 """
     if request.method == 'GET':
         form = WikiModelForm(request)
-        return render(request, 'wiki_form.html', {'form': form})
+        return render(request, 'web/wiki_form.html', {'form': form})
     form = WikiModelForm(request, data=request.POST)
     if form.is_valid():
         # 判断用户是否已经选择父文章
@@ -40,7 +40,7 @@ def wiki_add(request, project_id):
         url = reverse('wiki', kwargs={'project_id': project_id})
         return redirect(url)
 
-    return render(request, 'wiki_form.html', {'form': form})
+    return render(request, 'web/wiki_form.html', {'form': form})
 
 
 def wiki_catalog(request, project_id):
@@ -71,7 +71,7 @@ def wiki_edit(request, project_id, wiki_id):
         return redirect(url)
     if request.method == "GET":
         form = WikiModelForm(request, instance=wiki_object)
-        return render(request, 'wiki_form.html', {'form': form})
+        return render(request, 'web/wiki_form.html', {'form': form})
 
     form = WikiModelForm(request, data=request.POST, instance=wiki_object)
     if form.is_valid():
@@ -84,7 +84,7 @@ def wiki_edit(request, project_id, wiki_id):
         preview_url = "{0}?wiki_id={1}".format(url, wiki_id)
         return redirect(preview_url)
 
-    return render(request, 'wiki_form.html', {'form': form})
+    return render(request, 'web/wiki_form.html', {'form': form})
 
 
 @csrf_exempt

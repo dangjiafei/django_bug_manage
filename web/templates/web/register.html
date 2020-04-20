@@ -71,7 +71,7 @@
                 // 收集表单中的数据（找到每一个字段）$('#regForm').serialize()
                 // 数据ajax发送到后台
                 $.ajax({
-                    url: "{% url 'register' %}",
+                    url: "{% url 'web:register' %}",
                     type: "POST",
                     data: $('#regForm').serialize(), // 所有字段数据 + csrf token
                     dataType: "JSON",
@@ -102,7 +102,7 @@
 
                 // 发送ajax请求，把手机号发送过去
                 $.ajax({
-                    url: "{% url 'send_sms' %}", // 等价于 /send/sms/
+                    url: "{% url 'web:send_sms' %}", // 等价于 /send/sms/
                     type: "GET",
                     data: {mobile_phone: mobilePhone, tpl: "register"},
                     dataType: "JSON", // 将服务端返回的数据反序列化为字典

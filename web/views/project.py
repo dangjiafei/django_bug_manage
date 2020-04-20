@@ -74,11 +74,11 @@ def project_star(request, project_type, project_id):
     """ 星标项目 """
     if project_type == 'my':
         models.Project.objects.filter(id=project_id, creator=request.tracer.user).update(star=True)
-        return redirect('project_list')
+        return redirect('web:project_list')
 
     if project_type == 'join':
         models.ProjectUser.objects.filter(project_id=project_id, user=request.tracer.user).update(star=True)
-        return redirect('project_list')
+        return redirect('web:project_list')
 
     return HttpResponse('请求错误')
 
@@ -87,10 +87,10 @@ def project_unstar(request, project_type, project_id):
     """ 取消星标 """
     if project_type == 'my':
         models.Project.objects.filter(id=project_id, creator=request.tracer.user).update(star=False)
-        return redirect('project_list')
+        return redirect('web:project_list')
 
     if project_type == 'join':
         models.ProjectUser.objects.filter(project_id=project_id, user=request.tracer.user).update(star=False)
-        return redirect('project_list')
+        return redirect('web:project_list')
 
     return HttpResponse('请求错误')

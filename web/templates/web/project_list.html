@@ -92,11 +92,11 @@
             <div class="panel-body">
                 {% for item in project_dict.star %}
                     <div class="item">
-                        <a href="{% url 'dashboard' project_id=item.value.id %}" class="title"
+                        <a href="{% url 'web:null:dashboard' project_id=item.value.id %}" class="title"
                            style="background-color: {{ item.value.get_color_display }};">{{ item.value.name }}</a>
                         <div class="info">
                             <div>
-                                <a href="{% url 'project_unstar' project_type=item.type project_id=item.value.id %}">
+                                <a href="{% url 'web:project_unstar' project_type=item.type project_id=item.value.id %}">
                                     <i class="fa fa-star" aria-hidden="true" style="color: #f0ad4e;"></i>
                                 </a>
                                 <span>{{ item.value.creator.username }}</span>
@@ -116,11 +116,11 @@
             <div class="panel-body">
                 {% for item in project_dict.my %}
                     <div class="item">
-                        <a href="{% url 'dashboard' project_id=item.id %}" class="title"
+                        <a href="{% url 'web:null:dashboard' project_id=item.id %}" class="title"
                            style="background-color: {{ item.get_color_display }};">{{ item.name }}</a>
                         <div class="info">
                             <div>
-                                <a href="{% url 'project_star' project_type='my' project_id=item.id %}">
+                                <a href="{% url 'web:project_star' project_type='my' project_id=item.id %}">
                                     <i class="fa fa-star" aria-hidden="true" style="color: #d5d5d5"></i>
                                 </a>
                                 <span>{{ item.creator.username }}</span>
@@ -140,11 +140,11 @@
             <div class="panel-body">
                 {% for item in project_dict.join %}
                     <div class="item">
-                        <a href="{% url 'dashboard' project_id=item.id %}" class="title"
+                        <a href="{% url 'web:null:dashboard' project_id=item.id %}" class="title"
                            style="background-color: {{ item.get_color_display }};">{{ item.name }}</a>
                         <div class="info">
                             <div>
-                                <a href="{% url 'project_star' project_type='join' project_id=item.id %}">
+                                <a href="{% url 'web:project_star' project_type='join' project_id=item.id %}">
                                     <i class="fa fa-star" aria-hidden="true" style="color: #d5d5d5"></i>
                                 </a>
                                 <span>{{ item.creator.username }}</span>
@@ -206,7 +206,7 @@
             $('#btnSubmit').click(function () {
 
                 $.ajax({
-                    url: "{% url 'project_list' %}",
+                    url: "{% url 'web:project_list' %}",
                     type: "POST",
                     data: $('#addForm').serialize(),
                     dataType: "JSON",

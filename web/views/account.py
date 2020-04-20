@@ -43,7 +43,7 @@ def register(request):
             start_datetime=datetime.datetime.now()
         )
         # 方式二
-        return JsonResponse({'status': True, 'data': '/login/'})
+        return JsonResponse({'status': True, 'data': 'web/login/'})
 
     return JsonResponse({'status': False, 'error': form.errors})
 
@@ -73,7 +73,7 @@ def login_sms(request):
         request.session['user_id'] = user_object.id
         request.session.set_expiry(60 * 60 * 24 * 14)
 
-        return JsonResponse({"status": True, 'data': "/index/"})
+        return JsonResponse({"status": True, 'data': "web/index/"})
 
     return JsonResponse({"status": False, 'error': form.errors})
 
@@ -83,7 +83,6 @@ def login(request):
     if request.method == 'GET':
         form = LoginForm(request)
         return render(request, 'web/login.html', {'form': form})
-        # return HttpResponse("ok")
 
     form = LoginForm(request, data=request.POST)
     if form.is_valid():
@@ -100,7 +99,7 @@ def login(request):
             request.session['user_id'] = user_object.id
             request.session.set_expiry(60 * 60 * 24 * 14)
 
-            return redirect('index')
+            return redirect('web:index')
 
         form.add_error('username', '用户名或密码错误')
 
@@ -122,4 +121,4 @@ def image_code(request):
 
 def logout(request):
     request.session.flush()
-    return redirect('index')
+    return redirect('web:index')
