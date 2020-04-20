@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app01.apps.App01Config',
     'web.apps.WebConfig',
 ]
 
@@ -55,7 +54,7 @@ ROOT_URLCONF = 'django_bug_manage.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'app01/templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -146,13 +145,13 @@ TENCENT_COS_KEY = "COS的secret_key"
 
 # ------- 登录白名单: 无需登录就可以访问的页面 -------
 WHITE_REGEX_URL_LIST = [
-    "/web/register/",
-    "/web/send/sms/",
-    "/web/login/",
-    "/web/login/sms/",
-    "/web/image/code/",
-    "/web/index/",
-    "/web/price/",
+    "/register/",
+    "/send/sms/",
+    "/login/",
+    "/login/sms/",
+    "/image/code/",
+    "/index/",
+    "/price/",
 ]
 
 try:

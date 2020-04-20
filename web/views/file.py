@@ -53,7 +53,7 @@ def file(request, project_id):
             "breadcrumb_list": breadcrumb_list,
             'folder_object': parent_object
         }
-        return render(request, 'web/file.html', context)
+        return render(request, 'file.html', context)
 
     # POST 添加文件夹 & 文件夹的修改
     fid = request.POST.get('fid', '')

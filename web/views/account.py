@@ -20,7 +20,7 @@ def register(request):
     """ 注册 """
     if request.method == 'GET':
         form = RegisterModelForm()
-        return render(request, 'web/register.html', {'form': form})
+        return render(request, 'register.html', {'form': form})
 
     form = RegisterModelForm(data=request.POST)
     if form.is_valid():
@@ -43,7 +43,7 @@ def register(request):
             start_datetime=datetime.datetime.now()
         )
         # 方式二
-        return JsonResponse({'status': True, 'data': 'web/login/'})
+        return JsonResponse({'status': True, 'data': '/login/'})
 
     return JsonResponse({'status': False, 'error': form.errors})
 
@@ -62,7 +62,7 @@ def login_sms(request):
     """ 短信登录 """
     if request.method == 'GET':
         form = LoginSMSForm()
-        return render(request, 'web/login_sms.html', {'form': form})
+        return render(request, 'login_sms.html', {'form': form})
     form = LoginSMSForm(request.POST)
     if form.is_valid():
         # 用户输入正确，登录成功
@@ -73,7 +73,7 @@ def login_sms(request):
         request.session['user_id'] = user_object.id
         request.session.set_expiry(60 * 60 * 24 * 14)
 
-        return JsonResponse({"status": True, 'data': "web/index/"})
+        return JsonResponse({"status": True, 'data': "/index/"})
 
     return JsonResponse({"status": False, 'error': form.errors})
 
@@ -82,7 +82,7 @@ def login(request):
     """ 用户名和密码登录 """
     if request.method == 'GET':
         form = LoginForm(request)
-        return render(request, 'web/login.html', {'form': form})
+        return render(request, 'login.html', {'form': form})
 
     form = LoginForm(request, data=request.POST)
     if form.is_valid():
@@ -99,11 +99,11 @@ def login(request):
             request.session['user_id'] = user_object.id
             request.session.set_expiry(60 * 60 * 24 * 14)
 
-            return redirect('web:index')
+            return redirect('index')
 
         form.add_error('username', '用户名或密码错误')
 
-    return render(request, 'web/login.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
 
 
 def image_code(request):
@@ -121,4 +121,4 @@ def image_code(request):
 
 def logout(request):
     request.session.flush()
-    return redirect('web:index')
+    return redirect('index')
