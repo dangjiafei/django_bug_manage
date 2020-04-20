@@ -15,5 +15,5 @@ client = CosS3Client(config)
 
 response = client.create_bucket(
     Bucket='test-1251317460',
-    ACL="public-read"  #  private  /  public-read / public-read-write
+    ACL="public-read"  # private  /  public-read / public-read-write
 )
